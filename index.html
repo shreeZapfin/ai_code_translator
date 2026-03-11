@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AI Code Explainer</title>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>AI Code Explainer</h2>
+
+<p>Paste your code below:</p>
+
+<textarea id="code"></textarea>
+
+<button onclick="explainCode()">Explain Code</button>
+
+<h3>Explanation</h3>
+
+<div id="result">Result will appear here</div>
+
+</div>
+
+<script>
+
+async function explainCode(){
+
+const code=document.getElementById("code").value;
+
+const response=await fetch("/explain",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({code})
+
+});
+
+const data=await response.json();
+
+document.getElementById("result").innerText=data.explanation;
+
+}
+
+</script>
+
+</body>
+</html>
